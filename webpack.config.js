@@ -7,11 +7,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
-        options: { presets: ["@babel/env"] }
-      },
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            cacheDirectory: true,
+            cacheCompression: false,
+            // envName: buildConfig.isProduction ? "production" : "development"
+          }
+        }
+      },      
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
